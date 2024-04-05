@@ -19,6 +19,6 @@ public class Errors {
     }
 
     public static void printInputErrorMessage() {
-        System.err.println("Input Error: please format correctly");
+        System.out.println("Input Error: please format correctly");
     }
 }
