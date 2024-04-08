@@ -24,7 +24,7 @@ public class Main {
                             LocalDate.now().format(formatter) + ") > "
                     );
                     LocalDate date = LocalDate.parse(reader.readLine(), formatter);
-                    System.out.print("input save path > ");
+                    System.out.print("input save path(default: .) > ");
                     Scraper.Path path = new Scraper.Path(Objects.requireNonNull(reader.readLine()));
 
                     scraper.start(date, path);
