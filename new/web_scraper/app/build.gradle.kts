@@ -46,3 +46,16 @@ tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+tasks.jar {
+    // Main 메소드가 포함된 클래스
+    manifest { attributes["Main-Class"] = "web_scraper.App" }
+
+    // 종속성을 jar에 포함
+    from({
+        configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) }
+    })
+
+    // 중복 파일 방지
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
