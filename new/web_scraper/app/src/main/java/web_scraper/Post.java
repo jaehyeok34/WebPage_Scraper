@@ -1,3 +1,3 @@
 package web_scraper;
 
-public record Post(String title, String url) {}
+public record Post(String title, String url, String author) {}

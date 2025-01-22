@@ -9,6 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -122,7 +124,10 @@ public class App {
                 
                 // 제목, url 추출
                 WebElement content = finder.find(By.cssSelector("#sub-contents > div.bbs-default > ul > li:nth-child(" + j + ") > div.col.col-title > span > a"));
-                Post post = new Post(content.getText(), content.getDomAttribute("href"));
+
+                // 작성자 추출
+                WebElement author = finder.find(By.cssSelector("#sub-contents > div.bbs-default > ul > li:nth-child(" + j + ") > div.col.col-author > span"));
+                Post post = new Post(content.getText(), content.getDomAttribute("href"), author.getText());
 
                 posts.add(post);
             }
@@ -148,9 +153,11 @@ public class App {
     private static @NonNull boolean save(@NonNull File path, @NonNull List<Post> posts) {
         try (FileWriter writer = new FileWriter(new File(path, "post.txt"))) {
             for (Post post : posts) {
+                String code = Objects.requireNonNullElse(getCode(post.author()), "5, 71, 77\n");
+
                 writer.write(post.title() + "\n");
                 writer.write(post.url() + "\n");
-                writer.write("5, 71, 77\n");
+                writer.write(code);
                 writer.write("\n");
             }
 
@@ -158,5 +165,16 @@ public class App {
         } catch (IOException e) {
             return false;
         }
+    }
+
+    private static @Nullable String getCode(@NonNull String author) {
+        Map<String, String> authors = Map.of(
+            "해양수산부", "27, 44, 55\n",
+            "농촌진흥청", "19, 49, 78\n",
+            "보건복지부", "11, 32, 79\n",
+            "환경부", "31, 40, 71\n"
+        );
+
+        return authors.get(author);
     }
 }
