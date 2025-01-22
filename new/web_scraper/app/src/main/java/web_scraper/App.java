@@ -150,7 +150,8 @@ public class App {
             for (Post post : posts) {
                 writer.write(post.title() + "\n");
                 writer.write(post.url() + "\n");
-                writer.write("\n\n");
+                writer.write("5, 71, 77\n");
+                writer.write("\n");
             }
 
             return true;
