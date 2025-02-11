@@ -153,7 +153,7 @@ public class App {
     private static @NonNull boolean save(@NonNull File path, @NonNull List<Post> posts) {
         try (FileWriter writer = new FileWriter(new File(path, "post.txt"))) {
             for (Post post : posts) {
-                String code = Objects.requireNonNullElse(getCode(post.author()), "5, 71, 77\n");
+                String code = Objects.requireNonNullElse(getCode(post.author()), "5, 71, 77") + "\n";
 
                 writer.write(post.title() + "\n");
                 writer.write(post.url() + "\n");
@@ -168,16 +168,38 @@ public class App {
     }
 
     private static @Nullable String getCode(@NonNull String author) {
-        Map<String, String> authors = Map.of(
-            "해양수산부", "27, 44, 55\n",
-            "농촌진흥청", "19, 49, 78\n",
-            "보건복지부", "11, 32, 79\n",
-            "환경부", "31, 40, 71\n",
-            "문화체육관광부", "60, 64, 67\n",
-            "과학기술정보통신부", "37, 38, 71\n",
-            "산업통상자원부", "45, \n",
-            "국토교통부", "45, 51, \n",
-            "작성자원자력안전위원회", "34, 43, \n"
+        // Map<String, String> authors = Map.of(
+        //     "해양수산부", "27, 44, 55",
+        //     "농촌진흥청", "19, 49, 78",
+        //     "보건복지부", "11, 32, 79",
+        //     "환경부", "31, 40, 71",
+        //     "문화체육관광부", "60, 64, 67",
+        //     "과학기술정보통신부", "37, 38, 71",
+        //     "산업통상자원부", "45, ",
+        //     "국토교통부", "45, 51, ",
+        //     "원자력안전위원회", "34, 43, ",
+        //     "식품의약품안전처", "42, 71, 76",
+        //     "기상청", "26, 33, 40",
+        //     "행정안전부", "11, 42, 71"
+        // );
+
+        // if (authors.containsKey(author)) {
+        //     return authors.get(author);
+        // }
+
+        Map<String, String> authors = Map.ofEntries(
+            Map.entry("해양수산부", "27, 44, 55"),
+            Map.entry("농촌진흥청", "19, 49, 78"),
+            Map.entry("보건복지부", "11, 32, 79"),
+            Map.entry("환경부", "31, 40, 71"),
+            Map.entry("문화체육관광부", "60, 64, 67"),
+            Map.entry("과학기술정보통신부", "37, 38, 71"),
+            Map.entry("산업통상자원부", "45, "),
+            Map.entry("국토교통부", "45, 51, "),
+            Map.entry("원자력안전위원회", "34, 43, "),
+            Map.entry("식품의약품안전처", "42, 71, 76"),
+            Map.entry("기상청", "26, 33, 40"),
+            Map.entry("행정안전부", "11, 42, 71")
         );
 
         return authors.get(author);
