@@ -153,7 +153,11 @@ public class App {
     private static @NonNull boolean save(@NonNull File path, @NonNull List<Post> posts) {
         try (FileWriter writer = new FileWriter(new File(path, "post.txt"))) {
             for (Post post : posts) {
-                String code = Objects.requireNonNullElse(getCode(post.author()), "5, 71, 77") + "\n";
+                // String code = Objects.requireNonNullElse(getCode(post.author()), "5, 71, 77") + "\n";
+                String code = Objects.requireNonNullElseGet(getCode(post.author()), () -> {
+                    System.out.println("등록되지 않은 기관: " + post.author());
+                    return "5, 71, 77";
+                }) + "\n";
 
                 writer.write(post.title() + "\n");
                 writer.write(post.url() + "\n");
@@ -199,7 +203,9 @@ public class App {
             Map.entry("원자력안전위원회", "34, 43, "),
             Map.entry("식품의약품안전처", "42, 71, 76"),
             Map.entry("기상청", "26, 33, 40"),
-            Map.entry("행정안전부", "11, 42, 71")
+            Map.entry("행정안전부", "11, 42, 71"),
+            Map.entry("우주항공청", "30, 71, 77"),
+            Map.entry("질병관리청", "24, 32, 79")
         );
 
         return authors.get(author);
