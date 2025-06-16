@@ -1,16 +1,20 @@
 {
+  "bin": {
+    "post": "./main.js"
+  },
   "name": "new",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pkg": "pkg . --targets node22-macos-arm64 --output scraper"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "puppeteer": "^24.10.1"
+    "puppeteer-core": "^24.10.1"
   },
   "devDependencies": {
     "@types/node": "^24.0.1",
