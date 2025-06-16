@@ -1,5 +1,22 @@
-import { Page } from "puppeteer";
+import puppeteer, { Page } from "puppeteer";
 import { Item } from "./item_interface";
+
+async function scrape(url: string, cutoff: string): Promise<Item[]> {
+    const browser = await puppeteer.launch({headless: false});
+    const page = await browser.newPage();
+    
+    const allItem: Item[] = [];
+    for (let i = 1; i <= 10; i++) {
+        await page.goto(url + `?pagination.pageIndex=${i}`, {waitUntil: 'domcontentloaded'});
+        const { items, flag } = await getItems(page, cutoff);
+        allItem.push(...items);
+
+        if (flag) break; // 컷오프 날짜 이전의 게시글이 발견되면 중단
+    }
+
+    await browser.close();
+    return allItem;
+}
 
 async function getItems(page: Page, cutoff: string): Promise<{items: Item[], flag: boolean}> {
     return await page.$$eval('#sub-contents > div.bbs-default > ul > li', (elements, cutoff) => {
@@ -29,4 +46,4 @@ async function getItems(page: Page, cutoff: string): Promise<{items: Item[], fla
     }, cutoff);
 }
 
-export { getItems };
+export { scrape };
