@@ -1,5 +1,5 @@
 import puppeteer, { Page } from "puppeteer-core";
-import { Item } from "../item_interface";
+import { Item } from "../interface/item";
 
 
 async function scrape(url: string, cutoff: string): Promise<Item[]> {

@@ -1,5 +1,5 @@
 import { readFile, writeFile } from "fs/promises";
-import { Item } from "../item_interface";
+import { Item } from "../interface/item";
 import authorDomain from "../author_domain";
 
 async function getCutoff(path: string): Promise<string> {

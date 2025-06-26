@@ -1,4 +1,4 @@
-import { Item } from "./item_interface";
+import { Item } from "./interface/item";
 import { getCutoff, savePost, setCutoff } from "./utils/file";
 import { scrape } from "./utils/scrape";
 
