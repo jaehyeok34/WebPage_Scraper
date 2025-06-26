@@ -1,5 +1,6 @@
 import puppeteer, { Page } from "puppeteer-core";
-import { Item } from "./item_interface";
+import { Item } from "../item_interface";
+
 
 async function scrape(url: string, cutoff: string): Promise<Item[]> {
     const browser = await puppeteer.launch({

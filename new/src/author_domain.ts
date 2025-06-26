@@ -1,4 +1,4 @@
-const authorTable: Record<string, string> = {
+const authorDomain: Record<string, string> = {
   "해양수산부": "27, 44, 55",
   "농촌진흥청": "19, 49, 78",
   "보건복지부": "11, 32, 79",
@@ -15,4 +15,4 @@ const authorTable: Record<string, string> = {
   "질병관리청": "24, 32, 79"
 };
 
-export default authorTable;
+export default authorDomain;

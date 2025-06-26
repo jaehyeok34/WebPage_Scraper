@@ -1,6 +1,7 @@
-import { scrape } from "./scrape_utils";
 import { Item } from "./item_interface";
-import { getCutoff, savePost, setCutoff } from "./file_utils";
+import { getCutoff, savePost, setCutoff } from "./utils/file";
+import { scrape } from "./utils/scrape";
+
 
 async function main() {
     const file = './cutoff.txt';

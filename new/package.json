@@ -1,13 +1,11 @@
 {
-  "bin": {
-    "post": "./dist/main.js"
-  },
-  "name": "new",
+  "name": "post_scraper",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pkg": "pkg . --targets node18-macos-arm64 --output post"
+    "pkg": "pkg . --targets node18-macos-arm64 --output post",
+    "start": "ts-node src/main.ts"
   },
   "keywords": [],
   "author": "",
