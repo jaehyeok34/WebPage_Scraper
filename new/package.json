@@ -1,13 +1,13 @@
 {
   "bin": {
-    "post": "./main.js"
+    "post": "./dist/main.js"
   },
   "name": "new",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pkg": "pkg . --targets node22-macos-arm64 --output scraper"
+    "pkg": "pkg . --targets node18-macos-arm64 --output post"
   },
   "keywords": [],
   "author": "",

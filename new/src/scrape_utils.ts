@@ -1,4 +1,4 @@
-import puppeteer, { executablePath, Page } from "puppeteer-core";
+import puppeteer, { Page } from "puppeteer-core";
 import { Item } from "./item_interface";
 
 async function scrape(url: string, cutoff: string): Promise<Item[]> {
